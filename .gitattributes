@@ -1,7 +1,6 @@
 # Auto detect text files and perform LF normalization
 *.bat      text eol=crlf
 *.coffee   text
-*.css      text
 *.htm      text
 *.html     text
 *.inc      text
