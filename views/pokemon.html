@@ -1,0 +1,79 @@
+<div data-ng-controller="pokemonController"  id="view-pokemon">
+	<div data-ng-if="pokemon.name" class="pokemon">
+		<div data-ng-init="$root.pageTitle = pokemon.name;" class="row">
+			<div class="col-sm-12 col-md-6 col-xs-12">
+				<div class="card text-center">
+					<img class="rotate-on-hover" alt="{{pokemon.name}}" data-ng-repeat="sprite in pokemon.sprites" data-ng-if="sprite" data-ng-src="{{sprite}}" />
+					<h3 data-ng-bind="pokemon.name" class="name"></h3>
+					<div title="{{pokemon.base_experience}} Experience Points" class="stat-bar">
+						<span data-ng-style="{'width':(100-((608-pokemon.base_experience)/608)*100)+'%'}" class="fill"></span>
+						<p>Exp: <span data-ng-bind="pokemon.base_experience"></span> of 608</p>
+						<!-- 608 is the highest Exp point according to https://bulbapedia.bulbagarden.net/wiki/Experience -->
+					</div>
+					<div class="stats-alt">
+						<ul>
+							<li data-ng-repeat="(key,listAble) in statListAbles" data-ng-if="pokemon[listAble]" title="{{pokemon[listAble]}} {{key}}" class="clearfix">
+								<div class="pull-left">
+									<span data-ng-bind="key"></span>
+									<div class="bars"><span data-ng-repeat="i in pRange(pokemon[listAble]/5) track by $index" data-ng-if="$index < 5"></span></div>
+								</div>
+								<span data-ng-bind="pokemon[listAble]" class="pull-right"></span>
+							</li>
+							<li data-ng-repeat="(key,listAble) in metaListAbles" data-ng-if="specieMeta[listAble]" title="{{specieMeta[listAble]}} {{key}}" class="clearfix">
+								<div class="pull-left">
+									<span data-ng-bind="key"></span>
+									<div class="bars"><span data-ng-repeat="i in pRange(specieMeta[listAble]/5) track by $index" data-ng-if="$index < 5"></span></div>
+								</div>
+								<span data-ng-bind="specieMeta[listAble]" class="pull-right"></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div data-ng-if="pokemon.evolves_into.length" class="evolution">
+					<h4>Evolves Into</h4>
+					<div class="ul row">
+						<div data-ng-repeat="ePokemon in pokemon.evolves_into" data-ng-if="ePokemon.id != pokemon.id">
+							<div class="clearfix" data-ng-if="$index % 3 == 0"></div>
+							<div class="li col-xs-6 col-sm-4 text-center">
+								<a class="no-uix card" href="#pokemon/{{ePokemon.id}}-{{ePokemon.name | escape}}">
+									<span title="Evolves at Level {{ePokemon.lvl}}" data-ng-if="ePokemon.lvl" class="level"><span data-ng-bind="ePokemon.lvl"></span></span>
+									<img class="rotate-on-hover" alt="{{ePokemon.name}}" data-ng-src="{{ePokemon.sprites.front_default}}" />
+									<h5 data-ng-bind="ePokemon.name"></h5>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div data-ng-if="pokemon.items_held.length" class="items">
+					<h4>Items Held</h4>
+					<div class="ul row">
+						<div data-ng-repeat="item in pokemon.items_held">
+							<div class="clearfix" data-ng-if="$index % 3 == 0"></div>
+							<div class="li col-xs-6 col-sm-4 text-center">
+								<a class="no-uix card">
+									<span title="{{item.cost}} Damage" data-ng-if="item.cost" class="level"><span data-ng-bind="item.cost"></span></span>
+									<img alt="{{item.name}}" data-ng-src="{{item.sprites.default}}" /> {{item.sprites.front_default}}
+									<h5 data-ng-bind="item.names[0].name"></h5>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12 col-md-6 col-xs-12">
+				<div class="about">
+					<h3>About {{pokemon.name}}</h3>
+					<p data-ng-repeat="about in pokemon.about"><br data-ng-if="$index % 4 == 0 && $index" /><br data-ng-if="$index % 4 == 0 && $index" />{{about}}</p>
+				</div>
+				<div class="stats">
+					<ul>
+						<li title="{{stat.base_stat}} {{stat.stat.name}}" data-ng-repeat="stat in pokemon.stats">
+							<span data-ng-style="{height: stat.base_stat+'px'}" class="bar"></span>
+							<h5 data-ng-bind="stat.stat.name"></h5>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

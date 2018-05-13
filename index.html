@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="pokeapp">
+	<head>
+		<link href="assets/css/app.css" rel="stylesheet" />
+		<script src="assets/js/app.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title data-ng-bind="pageTitle"></title>
+	</head>
+	<body>
+		<header>
+			<span data-ng-if="pageTitle != 'Pokemons'" class="jback"><a href="#/"><i class="arrow left"></i></a></span> <h3 data-ng-bind="pageTitle"></h3>
+		</header>
+		<div data-ng-init="errorText='An error has occurred and we couldn\'t handle this request, please try refreshing this page after a while.';" class="container">
+			<div ng-if="!error" data-ng-class="{'loading':!pageLoaded}" data-ng-view></div>
+			<div ng-if="error" class="error card text-center col-lg-4 col-lg-offset-4">
+				<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png" />
+				<h3>Sorry</h3>
+				<small data-ng-bind="errorText"></small>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,16 @@
+<!-- Pokemon Views Template - Displays pokemons in a table with pagination -->
+<div data-ng-controller="pokemonsController" data-ng-init="(!loadLink && load('https://pokeapi.co/api/v2/pokemon/?limit=20')); $root.pageTitle = 'Pokemons';" id="pokemonsView">
+	<table data-ng-if="pokemons.length" style="width:100%">
+		<tr>
+			<th>Pokemon</th>
+			<th></th>
+			<th>Exp</th>
+		</tr>
+		<tr data-ng-repeat="pokemon in pokemons" data-ng-click="openPokemonPage(pokemon.id,pokemon.name)">
+			<td><img class="rotate-on-hover"data-ng-src="{{pokemon.meta.sprites.front_default}}" /></td>
+			<td>{{pokemon.name}}</td>
+			<td>{{pokemon.meta.base_experience}}</td>
+		</tr>
+	</table>
+	<span data-ng-disabled="doingAjax" data-ng-if="nextUrl && remCount" data-ng-click="load(nextUrl)" data-ng-bind="remCount" id="loadMore"></span>
+</div>

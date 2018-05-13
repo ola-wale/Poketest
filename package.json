@@ -1,0 +1,35 @@
+{
+  "name": "poketest",
+  "version": "1.0.0",
+  "description": "Front-End Test ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pokemon"
+  ],
+  "author": "Wale Moren <i@owale.co>",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-loading-bar": "^0.9.0",
+    "angular-mocks": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-watch": "^4.3.11",
+    "install": "^0.10.1",
+    "npm": "^5.0.3"
+  },
+  "devDependencies": {
+    "jasmine-core": "^2.6.3",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.1.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-ng-html2js-preprocessor": "^1.0.0",
+    "karma-phantomjs-launcher": "^1.0.4"
+  }
+}
